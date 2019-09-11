@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Countdown</title>
+  </head>
+
+  <link rel="stylesheet" href="style.css" />
+  <body>
+    <div class="container">
+      <div class="inputs">
+        <div class="start-time">
+          <input id="start-time-input" type="time" />
+          <p>start time</p>
+        </div>
+
+        <div class="end-date">
+          <input id="end-date-input" type="date" />
+          <p>end date</p>
+        </div>
+      </div>
+
+      <button id="calculate">calculate</button>
+
+      <div id="business-days">
+        <div class="box big">
+          <div class="output">0</div>
+          <p>Business days</p>
+        </div>
+      </div>
+
+      <div id="live-countdown">
+        <div class="box">
+          <div>00</div>
+          <p>days</p>
+        </div>
+        <div class="box">
+          <div>00</div>
+          <p>hours</p>
+        </div>
+        <div class="box">
+          <div>00</div>
+          <p>minutes</p>
+        </div>
+        <div class="box">
+          <div>00</div>
+          <p>seconds</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

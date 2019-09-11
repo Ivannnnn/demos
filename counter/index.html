@@ -1,59 +1,50 @@
-<style>
-  html,
-  body,
-  #app {
-    height: 100%;
-  }
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Counter</title>
 
-  #app {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="root"></div>
 
-  #circle {
-    width: 200px;
-    height: 200px;
-    border-radius: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-    font-size: 50px;
-    cursor: pointer;
-  }
-</style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script type="text/babel">
+      const { useState } = React
+      const { render } = ReactDOM
 
-<body>
-  <div id="app"></div>
-</body>
+      const App = () => {
+        const [count, setCount] = useState(1)
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
-<script
-  crossorigin
-  src="https://unpkg.com/react@16/umd/react.development.js"
-></script>
-<script
-  crossorigin
-  src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
-></script>
-<script type="text/babel">
-  const { useState } = React
-  const { render } = ReactDOM
+        const increase = () => setCount(c => ++c)
+        const toDefault = () => setCount(1)
+        const decrease = () => setCount(c => --c)
 
-  const App = () => {
-    const [count, setCount] = useState(1)
+        const isEven = count % 2 === 0
 
-    return (
-      <div
-        id="circle"
-        onClick={() => setCount(c => ++c)}
-        style={{ background: count % 2 === 0 ? 'skyblue' : 'red' }}
-      >
-        {count}
-      </div>
-    )
-  }
+        return (
+          <div id="app">
+            <div
+              id="circle"
+              onClick={increase}
+              style={{ background: isEven ? 'skyblue' : 'red' }}
+            >
+              {count}
+            </div>
 
-  render(<App />, document.querySelector('#app'))
-</script>
+            <div id="buttons">
+              <button onClick={increase}>Increase Me Gently!</button>
+              <button onClick={toDefault}>Default Me Gently!</button>
+              <button onClick={decrease}>Decrease Me Gently!</button>
+            </div>
+          </div>
+        )
+      }
+
+      render(<App />, document.querySelector('#root'))
+    </script>
+  </body>
+</html>
