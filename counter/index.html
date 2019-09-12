@@ -17,10 +17,10 @@
       const { render } = ReactDOM
 
       const App = () => {
-        const [count, setCount] = useState(1)
+        const [count, setCount] = useState(0)
 
         const increase = () => setCount(c => ++c)
-        const toDefault = () => setCount(1)
+        const reset = () => setCount(0)
         const decrease = () => setCount(c => --c)
 
         const isEven = count % 2 === 0
@@ -36,9 +36,9 @@
             </div>
 
             <div id="buttons">
-              <button onClick={increase}>Increase Me Gently!</button>
-              <button onClick={toDefault}>Default Me Gently!</button>
-              <button onClick={decrease}>Decrease Me Gently!</button>
+              <button onClick={increase}>Increase</button>
+              <button onClick={decrease}>Decrease</button>
+              <button onClick={reset}>Reset</button>
             </div>
           </div>
         )
