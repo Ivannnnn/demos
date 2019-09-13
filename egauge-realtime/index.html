@@ -1,0 +1,133 @@
+<style>
+  .chart {
+    width: 800px;
+    height: 600px;
+  }
+</style>
+
+<div class="chart">
+  <canvas id="chart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+  let ctx = document.getElementById('chart').getContext('2d')
+
+  const randomBetween = (min, max) =>
+    Math.floor(Math.random() * (max - min + 1) + min)
+
+  let secs = 0
+
+  const labels = new Array(30).fill('').map((v, i) => '')
+
+  let val = 8000
+
+  var chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Grid',
+          borderColor: 'rgb(255, 99, 132)',
+          data: new Array(30).map(() => null)
+        }
+      ]
+    },
+    options: {}
+  })
+
+  const addPoint = (y, ts) => {
+    const data = chart.data.datasets[0].data
+    const labels = chart.data.labels
+
+    data.shift()
+    data.push(y)
+
+    chart.data.labels.shift()
+    chart.data.labels.push(new Date(ts * 1000).toString().substr(16, 8))
+
+    chart.update()
+
+    //setTimeout(() => addPoint((val += randomBetween(10, 80))), 1000)
+  }
+
+  function xmlToJson(xml) {
+    // Create the return object
+    var obj = {}
+
+    if (xml.nodeType == 1) {
+      // element
+      // do attributes
+      if (xml.attributes.length > 0) {
+        obj['@attributes'] = {}
+        for (var j = 0; j < xml.attributes.length; j++) {
+          var attribute = xml.attributes.item(j)
+          obj['@attributes'][attribute.nodeName] = attribute.nodeValue
+        }
+      }
+    } else if (xml.nodeType == 3) {
+      // text
+      obj = xml.nodeValue
+    }
+
+    var textNodes = [].slice.call(xml.childNodes).filter(function(node) {
+      return node.nodeType === 3
+    })
+    if (xml.hasChildNodes() && xml.childNodes.length === textNodes.length) {
+      obj = [].slice.call(xml.childNodes).reduce(function(text, node) {
+        return text + node.nodeValue
+      }, '')
+    } else if (xml.hasChildNodes()) {
+      for (var i = 0; i < xml.childNodes.length; i++) {
+        var item = xml.childNodes.item(i)
+        var nodeName = item.nodeName
+        if (typeof obj[nodeName] == 'undefined') {
+          obj[nodeName] = xmlToJson(item)
+        } else {
+          if (typeof obj[nodeName].push == 'undefined') {
+            var old = obj[nodeName]
+            obj[nodeName] = []
+            obj[nodeName].push(old)
+          }
+          obj[nodeName].push(xmlToJson(item))
+        }
+      }
+    }
+    return obj
+  }
+
+  let parser = new DOMParser()
+
+  const fetchApi = cb => {
+    fetch(
+      'https://cors-anywhere.herokuapp.com/http://cob-chrvls.egaug.es/cgi-bin/egauge'
+    )
+      .then(r => r.text())
+      .then(r => {
+        let xml = parser.parseFromString(r.trim(), 'text/xml')
+        let json = xmlToJson(xml)
+
+        let result = {
+          ts: parseInt(json.data.ts)
+        }
+
+        json.data.r.forEach(r => {
+          result[r['@attributes'].n] = parseInt(r.v)
+        })
+
+        cb(result)
+      })
+  }
+
+  const button = document.querySelector('button')
+
+  const run = () => {
+    fetchApi(res => {
+      addPoint(res.Grid, res.ts)
+    })
+  }
+
+  setInterval(run, 1000)
+  run()
+</script>
