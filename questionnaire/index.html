@@ -1,0 +1,531 @@
+<style>
+  .scale {
+    width: 120px;
+    border-collapse: collapse;
+    text-align: center;
+    position: relative;
+  }
+
+  .scale .arrow {
+    position: absolute;
+    right: 0;
+    transition: top 10ms linear;
+    visibility: hidden;
+  }
+
+  .scale .arrow span {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: bold;
+    vertical-align: top;
+  }
+
+  .scale table {
+    position: relative;
+  }
+
+  .scale th.lab {
+    width: 35px;
+    text-align: right;
+    padding: 0;
+    vertical-align: bottom;
+  }
+
+  .spacer {
+    width: 30px;
+  }
+
+  .scale td {
+    width: 48px;
+    height: 4px;
+  }
+
+  .scale td.tick {
+    background: url(tick-sm.gif) center no-repeat;
+  }
+  .scale td.major {
+    background: url(tick-med.gif) center no-repeat;
+  }
+
+  .circle {
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    background: darkred;
+    position: absolute;
+    visibility: hidden;
+    left: 47px;
+  }
+</style>
+
+<div class="scale">
+  <div class="arrow">
+    <img src="arrow.gif" <tbody />
+    <span></span>
+  </div>
+  <div class="circle"></div>
+  <table>
+    <tr>
+      <th colspan="3" class="hdr">The best health you can imagine</th>
+    </tr>
+    <tr>
+      <th class="lab" rowspan="2"><div class="lab">100</div></th>
+      <td style="height: 18px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick major" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <th class="lab" rowspan="10"><div class="lab">90</div></th>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick major" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <th class="lab" rowspan="10"><div class="lab">80</div></th>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick major" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <th class="lab" rowspan="10"><div class="lab">70</div></th>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick major" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <th class="lab" rowspan="10"><div class="lab">60</div></th>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick major" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <th class="lab" rowspan="10"><div class="lab">50</div></th>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick major" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <th class="lab" rowspan="10"><div class="lab">40</div></th>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick major" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <th class="lab" rowspan="10"><div class="lab">30</div></th>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick major" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <th class="lab" rowspan="10"><div class="lab">20</div></th>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick major" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <th class="lab" rowspan="10"><div class="lab">10</div></th>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick major" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <th class="lab" rowspan="10"><div class="lab">0</div></th>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <td class="tick major" style="height: 4px;"></td>
+      <td class="spacer"></td>
+    </tr>
+    <tr>
+      <th colspan="3" class="ftr">The worst health you can imagine</th>
+    </tr>
+  </table>
+</div>
+
+<script>
+  let scale = document.querySelector('.scale')
+  let arrow = document.querySelector('.arrow')
+  let circle = document.querySelector('.circle')
+
+  let mouseover = e => {
+    if (e.target.matches('.tick')) {
+      positionArrow(
+        e.target.offsetTop - arrow.offsetHeight / 2 + 2,
+        102 -
+          Array.from(e.target.parentElement.parentElement.children).indexOf(
+            e.target.parentElement
+          )
+      )
+    }
+  }
+
+  let positionArrow = (top, val) => {
+    arrow.style.top = top + 'px'
+    arrow.lastElementChild.innerText = val
+  }
+
+  scale.addEventListener('mouseenter', () => {
+    scale.addEventListener('mouseover', mouseover)
+    arrow.style.visibility = 'visible'
+  })
+  scale.addEventListener('mouseleave', () => {
+    scale.removeEventListener('mouseover', mouseover)
+    arrow.style.visibility = 'hidden'
+  })
+
+  scale.addEventListener('click', () => {
+    circle.style.top = parseInt(arrow.style.top)
+    circle.style.visibility = 'visible'
+  })
+</script>
