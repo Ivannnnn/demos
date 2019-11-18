@@ -1,531 +1,133 @@
 <style>
-  .scale {
+  .form-slider {
     width: 120px;
+
     border-collapse: collapse;
     text-align: center;
     position: relative;
   }
 
-  .scale .arrow {
+  .form-slider .arrow {
     position: absolute;
     right: 0;
-    transition: top 10ms linear;
-    visibility: hidden;
+    display: none;
+    transition: top 50ms linear;
   }
 
-  .scale .arrow span {
+  .form-slider .arrow span {
     font-size: 18px;
     line-height: 28px;
     font-weight: bold;
     vertical-align: top;
   }
 
-  .scale table {
+  .form-slider .circle {
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    background: darkred;
+    position: absolute;
+    display: none;
+    left: calc(50% - 7px);
+    z-index: 2;
+  }
+
+  .form-slider table {
     position: relative;
   }
 
-  .scale th.lab {
+  .form-slider th.lab {
     width: 35px;
     text-align: right;
     padding: 0;
     vertical-align: bottom;
   }
 
-  .spacer {
+  .form-slider .spacer {
     width: 30px;
   }
 
-  .scale td {
+  .form-slider td {
     width: 48px;
     height: 4px;
   }
 
-  .scale td.tick {
-    background: url(tick-sm.gif) center no-repeat;
+  .form-slider td.tick {
+    width: 20px;
+    background: url(data:image/gif;base64,R0lGODlhDAABAKECAAAAAFdXV////////yH5BAEKAAIALAAAAAAMAAEAAAIEDI4ZBQA7)
+      center no-repeat;
   }
-  .scale td.major {
-    background: url(tick-med.gif) center no-repeat;
-  }
-
-  .circle {
-    width: 16px;
-    height: 16px;
-    border-radius: 100%;
-    background: darkred;
-    position: absolute;
-    visibility: hidden;
-    left: 47px;
+  .form-slider td.major {
+    background: url(data:image/gif;base64,R0lGODlhIAADAKIGAKampry8vFdXVwAAAG9uboyMjP///wAAACH5BAHoAwYALAAAAAAgAAMAAAMZaGoA8TDKCZY1QozNu//CtRBEYZ5oqhJWAgA7)
+      center no-repeat;
   }
 </style>
 
-<div class="scale">
-  <div class="arrow">
-    <img src="arrow.gif" <tbody />
-    <span></span>
-  </div>
-  <div class="circle"></div>
-  <table>
-    <tr>
-      <th colspan="3" class="hdr">The best health you can imagine</th>
-    </tr>
-    <tr>
-      <th class="lab" rowspan="2"><div class="lab">100</div></th>
-      <td style="height: 18px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick major" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <th class="lab" rowspan="10"><div class="lab">90</div></th>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick major" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <th class="lab" rowspan="10"><div class="lab">80</div></th>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick major" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <th class="lab" rowspan="10"><div class="lab">70</div></th>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick major" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <th class="lab" rowspan="10"><div class="lab">60</div></th>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick major" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <th class="lab" rowspan="10"><div class="lab">50</div></th>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick major" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <th class="lab" rowspan="10"><div class="lab">40</div></th>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick major" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <th class="lab" rowspan="10"><div class="lab">30</div></th>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick major" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <th class="lab" rowspan="10"><div class="lab">20</div></th>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick major" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <th class="lab" rowspan="10"><div class="lab">10</div></th>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick major" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <th class="lab" rowspan="10"><div class="lab">0</div></th>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <td class="tick major" style="height: 4px;"></td>
-      <td class="spacer"></td>
-    </tr>
-    <tr>
-      <th colspan="3" class="ftr">The worst health you can imagine</th>
-    </tr>
-  </table>
-</div>
+<script src="jquery.js"></script>
+
+<div id="app"></div>
 
 <script>
-  let scale = document.querySelector('.scale')
-  let arrow = document.querySelector('.arrow')
-  let circle = document.querySelector('.circle')
+  const $slider = $(`<div class="form-slider">
+       <div class="arrow"> <img src="data:image/gif;base64,R0lGODlhGgAcAMZ/AHSz8xhEo1OKvmqs7ovE/DyEyYS+9xNktCWB2Xy59SuE23uz6nOq8hRz1AljujJ1tJLC7TSM4YC89mad1VKd6DV9w4S57WWp7Sp4xSN+16zR9gxdtTGH3GSUwkiGwRx51TmM3lmi6TiQ4zSJ3Gyp5kyZ5YzA9ZTF9aXM9I297Eub6R9zxX6p1VeNwQpKvUGR4W2ZwxFmww5pyp7J81uf4kqX43i18iBss22v8ZHG/VCc5gxu0T2P4Rxgyw9TxRJOvRJRwRpz0wRCswZKvB9+2Im++mGn7EeX5UST4nmw9Q9x1G+w8CiH4F6l6nOv6Rxo0H6hxmOl5m2l4h9NqV+q8S6J31+l7ApHuUqU3kaV4laf6BxdyZXJ/jZzrluj6pjN/1Sc4Y/I/327+Rh41xNRu3+29nScxoG4+ZrF8F+X1YfB+Rxdxmqn11Gi7Yay54O26T2BwCpxtA9PwRhtwVmj7EWa6Vil7wlGt0CT5UGL1EKU5lKa4VWb4GGQvw9vzv///yH5BAEAAH8ALAAAAAAaABwAAAf+gH+Cg4SDEIWIiYhsT4qOiFIrjY+UDEEEPZSPlgQGmZqJSZcJJp+ghEkNBAkGBkCnhGUNORIAJzZCLj67PnJAQD/BP4VnswY2ODM2VFR2bSp1eCIRTNVThEVKXAYJAAMa4CgoM2hoECkpFm8iAYPZXGoJNksDJhYWCwtOJCRRNGB8FkRo94fAji8EJNgAgGOAlRAUShx5wSMCBwUIPiyo0i7HDhZhJMijd+GhlhI1kPAAMQLjGBIKApxoAIXFqoU4LhjxokVHiSwvWF7MMIYGkwAmaMJYIAYAySYQUaoEcRFBhgZYELQrssNMBycMdfL0CVSoggwfGozQKuiMHxiUfUjkhBqxBkWWGNE2yMC2rYwOLaJcGKviCJ6KVc4SGdOgARGCgsrI6COABh0KNeAUqFABA4YVK+bEcODAzzVUMVp42ENBRYEuDx7EiXPjxoEDDjY4OE2IQQwBHrCo0CNkiHEXyF1cWS7kTiLfHuDkKUAGViEpBzxwXmO90IQNcCps6e59g3jy5U2hF5RG/fo/bjQFAgA7" alt=""> <span></span> </div><div class="circle"></div><table> <tbody><tr> <th class="lab" rowspan="2"><div class="lab">100</div></th> <td></td><td class="spacer"></td></tr><tr> <td class="tick major"></td><td class="spacer"></td></tr><tr> <th class="lab" rowspan="10"><div class="lab">90</div></th> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick major"></td><td class="spacer"></td></tr><tr> <th class="lab" rowspan="10"><div class="lab">80</div></th> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick major"></td><td class="spacer"></td></tr><tr> <th class="lab" rowspan="10"><div class="lab">70</div></th> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick major"></td><td class="spacer"></td></tr><tr> <th class="lab" rowspan="10"><div class="lab">60</div></th> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick major"></td><td class="spacer"></td></tr><tr> <th class="lab" rowspan="10"><div class="lab">50</div></th> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick major"></td><td class="spacer"></td></tr><tr> <th class="lab" rowspan="10"><div class="lab">40</div></th> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick major"></td><td class="spacer"></td></tr><tr> <th class="lab" rowspan="10"><div class="lab">30</div></th> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick major"></td><td class="spacer"></td></tr><tr> <th class="lab" rowspan="10"><div class="lab">20</div></th> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick major"></td><td class="spacer"></td></tr><tr> <th class="lab" rowspan="10"><div class="lab">10</div></th> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick major"></td><td class="spacer"></td></tr><tr> <th class="lab" rowspan="10"><div class="lab">0</div></th> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick"></td><td class="spacer"></td></tr><tr> <td class="tick major"></td><td class="spacer"></td></tr></tbody></table>
+    </div>`)
 
-  let mouseover = e => {
-    if (e.target.matches('.tick')) {
-      positionArrow(
-        e.target.offsetTop - arrow.offsetHeight / 2 + 2,
-        102 -
-          Array.from(e.target.parentElement.parentElement.children).indexOf(
-            e.target.parentElement
-          )
-      )
-    }
+  $('#app').append($slider)
+
+  const $arrow = $slider.find('.arrow')
+  const $circle = $slider.find('.circle')
+
+  const arrowHeight = $arrow.height()
+
+  const positionArrow = e => {
+    let $target = $(e.target)
+    let top = e.target.offsetTop + arrowHeight / 2 - 13 + 'px'
+
+    let val =
+      102 -
+      $target
+        .parent()
+        .parent()
+        .children()
+        .index($(e.target).parent())
+
+    $arrow.css({ top })
+    $arrow
+      .children()
+      .last()
+      .text(val)
   }
 
-  let positionArrow = (top, val) => {
-    arrow.style.top = top + 'px'
-    arrow.lastElementChild.innerText = val
+  const sliderHeight = $slider.height()
+
+  console.log(sliderHeight)
+
+  let onMouseMove = e => {
+    console.log(e.pageY - $slider.offset().top)
+    //console.log((e.pageY - $slider.offset().top) / sliderHeight)
+    //positionArrow()
   }
 
-  scale.addEventListener('mouseenter', () => {
-    scale.addEventListener('mouseover', mouseover)
-    arrow.style.visibility = 'visible'
-  })
-  scale.addEventListener('mouseleave', () => {
-    scale.removeEventListener('mouseover', mouseover)
-    arrow.style.visibility = 'hidden'
+  $slider.mouseenter(e => {
+    //positionArrow(e)
+    $slider.mousemove(onMouseMove)
+    //$arrow.show()
   })
 
-  scale.addEventListener('click', () => {
-    circle.style.top = parseInt(arrow.style.top)
-    circle.style.visibility = 'visible'
+  $slider.mouseleave(() => {
+    //$arrow.hide()
+    $slider.off('mousemove', onMouseMove)
+  })
+
+  const updateValue = val => {
+    let parent =
+      $slider[0].parentElement.nextElementSibling.firstElementChild
+        .firstElementChild.firstElementChild
+    parent.replaceChild(document.createTextNode(val), parent.childNodes[2])
+  }
+
+  $slider.click(() => {
+    $circle.css({ top: parseInt($arrow[0].offsetTop + 6) }).show()
+    updateValue($arrow.text())
   })
 </script>
