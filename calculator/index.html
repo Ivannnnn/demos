@@ -1,0 +1,398 @@
+<link
+  href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins';
+    background: #009de6;
+    display: flex;
+    justify-content: center;
+    margin: 100px 0 40px 0;
+  }
+
+  .container {
+    width: 934px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 15px 40px;
+    background: rgb(255, 255, 255);
+    display: flex;
+    padding-top: 60px;
+  }
+
+  .col-6 {
+    width: 50%;
+    margin-left: 28px;
+  }
+
+  .preact-select {
+    position: relative;
+    margin-bottom: 36px;
+  }
+
+  .preact-select-inner {
+    border: 1px solid rgb(207, 216, 220);
+    height: 58px;
+    color: rgba(0, 0, 0, 0.65);
+    line-height: 58px;
+    font-size: 16px;
+    padding: 0 23px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .preact-select-inner > div:first-child {
+    flex-grow: 1;
+  }
+
+  .preact-select-inner svg {
+    fill: rgba(0, 0, 0, 0.25);
+    font-size: 14px;
+  }
+
+  .preact-select > ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+
+    position: absolute;
+    width: 100%;
+  }
+
+  .preact-select > ul.hide {
+    display: none;
+  }
+
+  .preact-select > ul > li {
+    user-select: none;
+    padding: 5px 12px;
+    overflow: hidden;
+    color: rgba(0, 0, 0, 0.65);
+    font-weight: 400;
+    line-height: 22px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    -webkit-transition: background 0.3s ease;
+    transition: background 0.3s ease;
+    line-height: 22px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+  }
+
+  .preact-select li.selected {
+    color: rgba(0, 0, 0, 0.65);
+    font-weight: 600;
+    background-color: #fafafa;
+  }
+
+  .preact-select li:hover {
+    background-color: #e6f7ff;
+  }
+
+  .preact-slider {
+    display: flex;
+    align-items: center;
+    margin-bottom: 36px;
+  }
+
+  .preact-slider-left,
+  .preact-slider-right {
+    background: rgb(0, 157, 230);
+    height: 5px;
+    border-radius: 2px;
+  }
+
+  .preact-slider-left {
+    width: calc(23% - 12px);
+  }
+
+  .preact-slider-circle {
+    background: rgb(0, 157, 230);
+    border-radius: 100%;
+    width: 24px;
+    height: 24px;
+  }
+
+  .preact-slider-right {
+    background: rgb(211, 241, 255);
+    width: calc(77% - 12px);
+  }
+
+  .choose {
+    display: flex;
+    margin-bottom: 36px;
+  }
+
+  .choose-button:first-child {
+    border-right: none;
+  }
+
+  .choose-button {
+    width: 50%;
+    height: 58px;
+    text-align: center;
+    line-height: 58px;
+    color: rgb(99, 121, 132);
+    flex: 1 1 0%;
+    border: 1px solid rgb(207, 216, 220);
+    cursor: pointer;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    margin-top: 0;
+  }
+
+  h3 {
+    color: rgb(99, 121, 132);
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  span.orange {
+    color: rgb(255, 0, 0);
+  }
+
+  button.orange {
+    background: rgb(255, 0, 0);
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 16px 24px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px 0px;
+  }
+
+  small {
+    display: block;
+    margin-bottom: 16px;
+  }
+</style>
+
+<div id="root"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/preact@10/dist/preact.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/preact/10.3.2/hooks.umd.js"></script>
+<script>
+  const { h, Component, render, createRef, memo } = preact
+  const { useState, useEffect, useRef } = preactHooks
+
+  const createElement = (h => {
+    const isObject = val => val !== null && val.constructor.name === 'Object'
+    const isFunction = val => typeof val === 'function'
+    const isArray = val => val.constructor.name === 'Array'
+    const isString = val => typeof val === 'string'
+
+    return new Proxy(
+      {},
+      {
+        get(target, tagName) {
+          return (...args) => {
+            let attrs = {},
+              children
+
+            args.forEach(arg => {
+              if (isFunction(arg) || isArray(arg)) {
+                children = arg
+              } else if (isObject(arg)) {
+                Object.assign(attrs, arg)
+              } else if (isString(arg)) {
+                if (arg.startsWith('.')) {
+                  attrs.className = arg.slice(1)
+                } else if (arg.startsWith('#')) {
+                  attrs.id = arg.slice(1)
+                } else {
+                  children = arg
+                }
+              }
+            })
+
+            return h(tagName, attrs, children)
+          }
+        }
+      }
+    )
+  })(h)
+
+  const {
+    div,
+    svg,
+    path,
+    ul,
+    li,
+    button,
+    h2,
+    h3,
+    img,
+    h4,
+    h5,
+    small,
+    span,
+    p
+  } = createElement
+
+  const Select = ({ options }) => {
+    const [selected, setSelected] = useState(0)
+    const [open, setOpen] = useState(false)
+
+    const el = useRef()
+
+    const onSelect = i => {
+      setSelected(i)
+      setOpen(false)
+    }
+
+    const handleClickOutside = e => {
+      el.current.contains(e.target) || setOpen(false)
+    }
+
+    useEffect(() => {
+      open
+        ? document.addEventListener('mousedown', handleClickOutside)
+        : document.removeEventListener('mousedown', handleClickOutside)
+      return () => document.removeEventListener('mousedown', handleClickOutside)
+    }, [open])
+
+    return div('.preact-select', [
+      div('.preact-select-inner', { onClick: () => setOpen(true) }, [
+        div(options[selected].toString()),
+        svg({ viewBox: '64 64 896 896', width: '1em', height: '1em' }, [
+          path({
+            d:
+              'M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z'
+          })
+        ])
+      ]),
+      ul(
+        options.map((option, i) =>
+          li(option.toString(), {
+            className: selected === i ? 'selected' : '',
+            onClick: () => onSelect(i)
+          })
+        ),
+        { className: open ? '' : 'hide', ref: el }
+      )
+    ])
+  }
+
+  const Slider = ({ min, max }) => {
+    return div('.preact-slider', [
+      div('.preact-slider-left'),
+      div('.preact-slider-circle'),
+      div('.preact-slider-right')
+    ])
+  }
+
+  const Choose = () => {
+    const [chosen, setChosen] = useState(null)
+
+    return div('.choose', [
+      div('Yes', {
+        className: chosen === true ? 'choose-button chosen' : 'choose-button',
+        onClick: () => setChosen(true)
+      }),
+      div('No', {
+        className: chosen === false ? 'choose-button chosen' : 'choose-button',
+        onClick: () => setChosen(false)
+      })
+    ])
+  }
+
+  const data = {
+    'Climate Region': [
+      'Region #1 - Red',
+      'Region #2 - Orange',
+      'Region #3 - Yellow'
+    ],
+    'Insulation Grade': [
+      'Extremely Well Insulated',
+      'More than Average Insulation',
+      'US Standard Insulation Grade',
+      'Less than US Standard Insulation',
+      'Poorly Insulated'
+    ],
+    'Amount of Windows': ['Average Amount', 'More Windows than Average'],
+    'Windows & Doors Air Tightness': [
+      'Double pane, Well sealed',
+      'Average Design',
+      'Single pane, Not perfectly sealed'
+    ],
+    'How Many Occupants?': ['2 or less', 3, 4, 5, 6],
+    'Extra Device Heat Wattage (W)': [2, 3, 4, 5, 6]
+  }
+
+  const App = () => {
+    return div('.container', [
+      div('.col-6', [
+        h2('* Climate Legion'),
+        h(Select, { options: data['Climate Region'] }),
+        h('h3', {}, '# of Space Area (SQFT):'),
+        h(Slider, { min: 8, max: 100 }),
+        h('h3', {}, '# of Space Height (FT):'),
+        h(Slider, { min: 8, max: 100 }),
+        h2('* Insulation Grade'),
+        h(Select, { options: data['Insulation Grade'] }),
+        h2('* Amount of Windows'),
+        h(Select, { options: data['Amount of Windows'] }),
+        h2('* Windows & Doors Air Tightness'),
+        h(Select, { options: data['Windows & Doors Air Tightness'] }),
+        h3('Si Glass SunRoom'),
+        h(Choose),
+        h2('* How Many Occupants?'),
+        h(Select, { options: data['How Many Occupants?'] }),
+        h3('Is There a Kitchen'),
+        h(Choose),
+        h2('* Extra Device Heat Wattage (W)'),
+        h(Select, { options: data['Extra Device Heat Wattage (W)'] })
+      ]),
+      div('.col-6', [
+        div(
+          '',
+          {
+            style: {
+              background: 'rgb(249, 249, 249)',
+              padding: '50px',
+              color: 'rgba(0,0,0,.65)',
+              textAlign: 'center'
+            }
+          },
+          [
+            img({
+              src:
+                'https://images.ctfassets.net/3q1a0w8cwuwf/5MCDWS1TjpKFmeGHwiYaFx/4a7d2a07249f7256042be28268bcc2c8/climate_map_t.png'
+            }),
+            p('RECOMMENDED EQUIPMENT CAPACITY'),
+
+            h4('0 BTU'),
+            small([
+              'Calculated Cooling Load: ',
+              span('0 BTU', { className: 'orange' })
+            ]),
+
+            button('.calculate', 'Calculate', { className: 'orange' })
+          ]
+        )
+      ])
+    ])
+  }
+
+  render(h(App), document.getElementById('root'))
+</script>
