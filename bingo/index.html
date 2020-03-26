@@ -1,0 +1,91 @@
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    padding: 40px 20px 20px 20px;
+  }
+
+  .grid {
+    border: 1px solid black;
+    margin: 0 auto;
+  }
+
+  .grid .square {
+    width: 20%;
+    height: 20%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid black;
+    cursor: pointer;
+  }
+
+  .grid .square.highlighted {
+    background: url('./mark.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+
+  .grid .square div {
+    font-size: 32px;
+  }
+</style>
+
+<body>
+  <div class="grid"></div>
+</body>
+
+<script>
+  const randomBetween = (min, max) =>
+    Math.floor(Math.random() * (max - min + 1) + min)
+
+  const createArrayRange = (min, max, diff) => {
+    const result = []
+    for (let i = min; i <= max; i += diff) result.push(i)
+    return result
+  }
+
+  const generateBingoNumbers = () => {
+    const result = []
+    const allNums = createArrayRange(1, 75, 1)
+    for (let i = 0; i < 24; i++) {
+      result.push(allNums.splice(randomBetween(0, allNums.length - 1), 1)[0])
+    }
+    result.splice(12, 0, '')
+    return result
+  }
+
+  const numbers = generateBingoNumbers()
+
+  const grid = document.querySelector('.grid')
+
+  let html = ''
+  for (let i = 0; i < 25; i++) {
+    html += `<div class='square'><div>${
+      i === 12 ? 'Free' : numbers[i]
+    }</div></div>`
+  }
+
+  grid.innerHTML = html
+
+  function setSize() {
+    grid.style.width = grid.style.height = 'auto'
+    const smaller = Math.min(grid.offsetWidth, grid.offsetHeight)
+    grid.style.width = grid.style.height = smaller + 'px'
+  }
+
+  window.addEventListener('resize', setSize)
+
+  grid.addEventListener('click', e => {
+    const square = e.target.closest('.square')
+    square.classList.contains('highlighted')
+      ? square.classList.remove('highlighted')
+      : square.classList.add('highlighted')
+  })
+
+  document.addEventListener('DOMContentLoaded', setSize)
+</script>
